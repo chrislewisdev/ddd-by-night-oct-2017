@@ -11,7 +11,11 @@ script:
 
 deploy:
 - provider: script
-  script: ./terraform apply
+  script: 
+    - ./terraform apply
+    - echo "Website created! Available at the following URL"
+    - ./terraform output website_url
+  skip_cleanup: true
   on:
     branch: master
 
@@ -22,7 +26,3 @@ deploy:
   region: "ap-southeast-2"
   on:
     branch: master
-
-after_deploy:
-  - echo "All done! Your website is available at the following URL"
-  - ./terraform output website_url
