@@ -11,7 +11,8 @@ script:
 
 deploy:
 - provider: script
-  script: ./terraform apply
+  script: 
+    - ./terraform apply
   skip_cleanup: true
   on:
     branch: master
