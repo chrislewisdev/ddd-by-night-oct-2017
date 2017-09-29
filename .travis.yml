@@ -21,5 +21,6 @@ deploy:
   secret_access_key: $AWS_SECRET_ACCESS_KEY
   bucket: "hello-world.com"
   region: "ap-southeast-2"
+  local_dir: website
   on:
     branch: master
