@@ -7,6 +7,14 @@ variable "website_name" {
     default = "hello-world.com"
 }
 
+terraform {
+  backend "s3" {
+    bucket = "chrislewisdev-terraform"
+    key    = "ddd-by-night-oct-2017/terraform.tfstate"
+    region = "ap-southeast-2"
+  }
+}
+
 resource "aws_s3_bucket" "website_bucket" {
   bucket = "${var.website_name}"
   acl    = "public-read"
