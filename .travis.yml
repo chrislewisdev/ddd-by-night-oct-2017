@@ -11,10 +11,7 @@ script:
 
 deploy:
 - provider: script
-  script: 
-    - ./terraform apply
-    - echo "Website created! Available at the following URL"
-    - ./terraform output website_url
+  script: ./terraform apply
   skip_cleanup: true
   on:
     branch: master
