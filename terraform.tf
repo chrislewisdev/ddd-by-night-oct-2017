@@ -16,7 +16,7 @@ terraform {
 }
 
 data "template_file" "s3_website_policy" {
-  template = "{$file("s3-website-policy.json")}"
+  template = "${file("s3-website-policy.json")}"
 
   vars {
     bucket_name = "${var.website_name}"
