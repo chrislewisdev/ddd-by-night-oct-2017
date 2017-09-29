@@ -1,0 +1,28 @@
+notifications:
+  email: false
+
+before_install:
+  - wget https://releases.hashicorp.com/terraform/0.10.6/terraform_0.10.6_linux_amd64.zip
+  - unzip terraform_0.10.6_linux_amd64.zip
+
+script:
+  - ./terraform init
+  - ./terraform plan
+
+deploy:
+- provider: script
+  script: ./terraform apply
+  on:
+    branch: master
+
+- provider: s3
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  bucket: "hello-world.com"
+  region: "ap-southeast-2"
+  on:
+    branch: master
+
+after_deploy:
+  - echo "All done! Your website is available at:"
+  - ./terraform output website_url
