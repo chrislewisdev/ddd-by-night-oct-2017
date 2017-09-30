@@ -15,10 +15,18 @@ terraform {
   }
 }
 
+data "template_file" "s3_website_policy" {
+  template = "${file("s3-website-policy.json")}"
+
+  vars {
+    bucket_name = "${var.website_name}"
+  }
+}
+
 resource "aws_s3_bucket" "website_bucket" {
   bucket = "${var.website_name}"
   acl    = "public-read"
-  policy = "${replace(file("s3-website-policy.json"), "BUCKET_NAME", "${var.website_name}")}"
+  policy = "${data.template_file.s3_website_policy.rendered}"
 
   website {
     index_document = "index.html"
