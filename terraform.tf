@@ -4,20 +4,20 @@ provider "aws" {
 }
 
 variable "website_name" {
-    type = "string"
-    description = "Name of the S3 bucket and website to create, e.g. 'hello-world.com'"
+  type        = "string"
+  description = "Name of the S3 bucket and website to create, e.g. 'hello-world.com'"
 
-    #####################################
-    #IMPORTANT: Set this to the name you want for the S3 bucket that our terraform will create!
-    #####################################
-    default = "hello-world.com"
+  #####################################
+  #IMPORTANT: Set this to the name you want for the S3 bucket that our terraform will create!
+  #####################################
+  default = "hello-world.com"
 }
 
 terraform {
   backend "s3" {
     key    = "ddd-by-night-oct-2017/terraform.tfstate"
     region = "ap-southeast-2"
-    
+
     #####################################
     #IMPORTANT: Set this to the name of an EXISTING S3 bucket in your AWS account.
     #Terraform will use this to store information about your infrastructure so it knows what to create/update/delete when you apply changes.
@@ -44,6 +44,7 @@ resource "aws_s3_bucket" "website_bucket" {
 
   website {
     index_document = "index.html"
+    error_document = "404.html"
   }
 }
 
