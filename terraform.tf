@@ -26,6 +26,8 @@ terraform {
   }
 }
 
+#The file 's3-website-policy.json' contains a boilerplate public-access policy for our website bucket.
+#This template_file block inserts our website name into the policy so we can use it when creating our bucket.
 data "template_file" "s3_website_policy" {
   template = "${file("s3-website-policy.json")}"
 
