@@ -1,15 +1,18 @@
 notifications:
   email: false
 
+#Install a Terraform executable locally
 before_install:
   - wget https://releases.hashicorp.com/terraform/0.10.6/terraform_0.10.6_linux_amd64.zip
   - unzip terraform_0.10.6_linux_amd64.zip
 
+#These two steps will effectively validate our terraform and output a list of any changes to be made to our infrastructure
 script:
   - ./terraform init
   - ./terraform plan
 
 deploy:
+#Roll out any terraform changes required
 - provider: script
   script: 
     - ./terraform apply
@@ -17,6 +20,7 @@ deploy:
   on:
     branch: master
 
+#Upload our website contents to the S3 bucket that terraform created
 - provider: s3
   access_key_id: $AWS_ACCESS_KEY_ID
   secret_access_key: $AWS_SECRET_ACCESS_KEY
