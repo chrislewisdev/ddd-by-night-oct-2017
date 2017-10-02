@@ -54,3 +54,7 @@ it should create an S3 bucket of the name you chose, and upload the website file
 
 Note that at the end of the "terraform apply" command in your Travis build logs, Terraform should have output the URL for your website.
 If you access that URL you should see our glorious Hello World page!
+
+## Problems? Questions?
+
+Feel free to [message me on Twitter](https://twitter.com/cl_dev) if you have any questions! I've not made this walkthrough super detailed because I'm not sure what kind of experience level the likely readers will be, but I'm happy to help and update the documentation.
