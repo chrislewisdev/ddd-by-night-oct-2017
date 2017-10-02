@@ -44,8 +44,7 @@ Just know that if you try to trigger any builds before completing the next step,
 In order to be able to access your AWS account (both for creating the S3 bucket and deploying to it), the Travis configuration expects
 two environment variables to be present: AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY.
 
-You can use either the Access/Secret Keys for your root AWS account or any IAM user you've created, so long as it has permissions 
-for S3 it should work just fine!
+You can use either the Access/Secret Keys for your root AWS account (probably not recommended) or any IAM user you've created, so long as it has permissions for S3 it should work just fine!
 
 ### 5. Run a Build!
 
